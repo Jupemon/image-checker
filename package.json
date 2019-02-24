@@ -18,8 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepublish": "npm run build",
-    "publish": "image-checker -d build"
+    "predeploy": "npm run build",
+    "deploy": "image-checker -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
