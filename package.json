@@ -2,6 +2,7 @@
   "name": "facial-regonition-brain",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://Jupemon.github.io/image-checker",
   "dependencies": {
     "clarifai": "^2.9.0",
     "react": "^16.8.2",
@@ -16,7 +17,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepublish": "npm run build",
+    "publish": "image-checker -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
