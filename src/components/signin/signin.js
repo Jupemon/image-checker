@@ -1,5 +1,11 @@
 import React from 'react';
 import './signin.css'
+import Clarifai from 'clarifai';
+
+const app = new Clarifai.App({
+    apiKey: "08c6e0ed70e54110992c327c5e34eae1"
+  });
+
 class SignIn extends React.Component {
 constructor () {
     super()
