@@ -24,7 +24,7 @@ onUsernameChange = event => {
 }
 
 onSubmitSignIn = () => {
-    fetch("http://localhost:3000/register", {
+    fetch("https://afternoon-cove-52339.herokuapp.com/register", {
          method:"post",
          headers: {"Content-Type": "application/json"},
          body: JSON.stringify({
@@ -33,13 +33,6 @@ onSubmitSignIn = () => {
              name: this.state.Username
             })
     }).then(Response=> Response.json()).then(user => {
-      const responseUser = {    
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        entries: user.entries,
-        joined: user.joined
-        }
         console.log("user loaded")
         this.props.loadUser(user);
     })
