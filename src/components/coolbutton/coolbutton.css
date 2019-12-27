@@ -1,0 +1,11 @@
+.CoolButton {
+    background-color: rgb(233, 149, 233);
+    border-bottom: violet solid 5px;
+    border-radius: 10px;
+}
+
+span :hover {
+    background-color: violet;
+    border-radius: 10px;
+    cursor: pointer;
+}

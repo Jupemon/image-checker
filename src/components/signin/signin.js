@@ -1,19 +1,17 @@
 import React from 'react';
 import './signin.css'
-import Clarifai from 'clarifai';
 
-const app = new Clarifai.App({
-    apiKey: "08c6e0ed70e54110992c327c5e34eae1"
-  });
 
 class SignIn extends React.Component {
 constructor () {
     super()
     this.state = {
         signInEmail: "",
-        signInPassword : ""
+        signInPassword : "",
+        signInError : false
     }
 }
+
 onEmailChange = event => {
     const signInEmail = event.target.value;
     this.setState({signInEmail});
@@ -22,7 +20,16 @@ onPasswordChange = event => {
     const signInPassword = event.target.value;
     this.setState({signInPassword});
 }
-
+errorText = "Error signing in"
+loginError = () => {
+    console.log(typeof this.errorText, this.errorText, "ERROR TEXT")
+    if (this.state.signInError) {
+        this.setState({signInError : !this.state.signInError})
+    }
+    if (this.refs.email === this.errorText) {
+        this.refs.email = "";
+    }
+}
 onSubmitSignIn = () => {
     fetch("https://afternoon-cove-52339.herokuapp.com/signin", {
          method:"post",
@@ -37,7 +44,13 @@ onSubmitSignIn = () => {
             this.props.loadUser(user);
             this.props.onRouteChange("home");
         }
+        else {
+            this.refs.password.value = "";
+            this.refs.email.value = this.errorText;
+            this.setState({signInError : true});
+        }
     })
+    
 }
 /*onSubmitSignIn = () => {
     fetch("http://localhost:3000/register", {
@@ -54,7 +67,6 @@ onSubmitSignIn = () => {
         }
         console.log("user loaded")
         this.props.loadUser(user); */
-
     render() {
     return ( <div>
         <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -63,7 +75,7 @@ onSubmitSignIn = () => {
                     <legend className="f1 fw6 ph0 mh0">Sign In</legend>
                 <div className="mt3">
                     <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                    <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" ref="email" onChange={(e) => this.onEmailChange(e)}/>
+                    <input className={`pa2 input-reset ba bg-transparent hover-bg-${this.state.signInError ? "red" : "black"} hover-white w-100`} type="email" name="email-address"  id="email-address" ref="email" onClick={() => this.loginError()} onChange={(e) => this.onEmailChange(e)}/>
                 </div>
                 <div className="mv3">
                     <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>

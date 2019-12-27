@@ -9,6 +9,9 @@ import Clarifai from 'clarifai';
 import FaceRecognition from './components/facerecognition/facerecognition';
 import SignIn from './components/signin/signin';
 import Register from './components/register/register';
+import { BrowserRouter, Route} from 'react-router-dom'
+import CoolButton from './components/coolbutton/coolbutton';
+
 
 const app = new Clarifai.App({
   apiKey: "08c6e0ed70e54110992c327c5e34eae1"
@@ -109,26 +112,32 @@ class App extends Component {
   }
 
   render() {
-    console.log(typeof this.state.user.id, this.state.user.id)
     return (
-      <div className="App">
-        <Particles className="particles"
-              params={particlesOptions}
-            />
-        <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn}/>
-        {this.state.route === "home" 
-        ? <div> 
-        <Logo />
-        <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit}/>
-        <Rank name={this.state.user.name} entries={this.state.user.entries}/>
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
-         </div>
-        : (
-          this.state.route === "signin"
-           ? <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/> 
-           : <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
-        )}
+      <BrowserRouter>
+    <div className="App">
+    <Particles className="particles"
+                params={particlesOptions}
+              />
+     <Route path={"/signin"} component={SignIn} />
+     <Route path={"/register"} component={Register} />
+    <CoolButton />
+
+          <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn}/>
+          {this.state.route === "home" 
+          ? <div> 
+          <Logo />
+          <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit}/>
+          <Rank name={this.state.user.name} entries={this.state.user.entries}/>
+          <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+          </div>
+          : (
+            this.state.route === "signin"
+            ? <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/> 
+            : <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
+          )}
+          
       </div>
+</BrowserRouter>
     );
   }
 }
