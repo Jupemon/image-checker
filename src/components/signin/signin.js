@@ -6,8 +6,9 @@ class SignIn extends React.Component {
 constructor () {
     super()
     this.state = {
-        signInEmail: "",
-        signInPassword : "",
+        isLoading : false,
+        signInEmail: "test@gmail.com",
+        signInPassword : "test",
         signInError : false
     }
 }
@@ -31,6 +32,7 @@ loginError = () => {
     }
 }
 onSubmitSignIn = () => {
+    this.setState({isLoading : true});
     fetch("https://afternoon-cove-52339.herokuapp.com/signin", {
          method:"post",
          headers: {"Content-Type": "application/json"},
@@ -49,6 +51,7 @@ onSubmitSignIn = () => {
             this.refs.email.value = this.errorText;
             this.setState({signInError : true});
         }
+        this.setState({isLoading : false})
     })
     
 }
@@ -75,15 +78,15 @@ onSubmitSignIn = () => {
                     <legend className="f1 fw6 ph0 mh0">Sign In</legend>
                 <div className="mt3">
                     <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                    <input className={`pa2 input-reset ba bg-transparent hover-bg-${this.state.signInError ? "red" : "black"} hover-white w-100`} type="email" name="email-address"  id="email-address" ref="email" onClick={() => this.loginError()} onChange={(e) => this.onEmailChange(e)}/>
+                    <input className={`pa2 input-reset ba bg-transparent hover-bg-${this.state.signInError ? "red" : "black"} hover-white w-100`} type="email" name="email-address"  id="email-address" defaultValue="test@gmail.com" ref="email" onClick={() => this.loginError()} onChange={(e) => this.onEmailChange(e)}/>
                 </div>
                 <div className="mv3">
                     <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                    <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" ref="password" onChange={(e) => this.onPasswordChange(e)}/>
+                    <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" defaultValue="test" type="password" name="password"  id="password" ref="password" onChange={(e) => this.onPasswordChange(e)}/>
                 </div>
             </fieldset>
             <div className="">
-            <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in" onClick={() => this.onSubmitSignIn()} />
+            <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value={this.state.isLoading ? "Loading..." : "Sign in"} disabled={this.state.isLoading} onClick={() => this.onSubmitSignIn()} />
             </div>
             <div className="lh-copy mt3">
             <a href="#0" className="f6 link dim black db" onClick={() => this.props.onRouteChange("register")}>Register</a>

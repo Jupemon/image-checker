@@ -32,8 +32,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      isLoadingImage: false,
       input: '',
-      imageUrl :'',
+      imageUrl :'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Arnold_Schwarzenegger_-_2019_%2833730956438%29_%28cropped%29.jpg/250px-Arnold_Schwarzenegger_-_2019_%2833730956438%29_%28cropped%29.jpg',
       box: {},
       route: "signin",
       isSignedIn: false,
@@ -87,7 +88,7 @@ class App extends Component {
   }
 
   onSubmit = (event) => {
-    this.setState({imageUrl: this.state.input})
+    this.setState({imageUrl: this.state.input ,isLoadingImage: true})
     console.log(this.state.input);
     app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.input)
     .then(response => {
@@ -101,6 +102,7 @@ class App extends Component {
         }).then(response => response.json())
         .then(count => this.setState(Object.assign(this.state.user, {entries: count})))
       }
+      this.setState({isLoadingImage : false})
       this.displayFaceBox(this.calculateFaceLocation(response))
     })
     .catch(err => err.json().then(error => console.log(error)));
@@ -120,13 +122,12 @@ class App extends Component {
               />
      <Route path={"/signin"} component={SignIn} />
      <Route path={"/register"} component={Register} />
-    <CoolButton />
 
           <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn}/>
           {this.state.route === "home" 
           ? <div> 
           <Logo />
-          <ImageLinkForm onInputChange={this.onInputChange} onSubmit={this.onSubmit}/>
+          <ImageLinkForm onInputChange={this.onInputChange} isLoadingImage={this.state.isLoadingImage} onSubmit={this.onSubmit}/>
           <Rank name={this.state.user.name} entries={this.state.user.entries}/>
           <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
           </div>
