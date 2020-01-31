@@ -24,7 +24,7 @@ onUsernameChange = event => {
 }
 
 onSubmitSignIn = () => {
-    fetch("https://afternoon-cove-52339.herokuapp.com/register", {
+    fetch("https://image-checker-server.herokuapp.com/register", {
          method:"post",
          headers: {"Content-Type": "application/json"},
          body: JSON.stringify({
