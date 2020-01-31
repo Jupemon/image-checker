@@ -94,7 +94,7 @@ class App extends Component {
     app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.input)
     .then(response => {
       if (response) {
-        fetch("https://afternoon-cove-52339.herokuapp.com/image", {
+        fetch("https://image-checker-server.herokuapp.com/image", {
           method: "put",
           headers: {"Content-Type" : "application/json"},
           body: JSON.stringify({
