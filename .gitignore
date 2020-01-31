@@ -10,6 +10,7 @@
 
 # production
 /build
+/build-image-checker/
 
 # misc
 .DS_Store

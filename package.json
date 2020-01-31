@@ -5,6 +5,7 @@
   "homepage": "http://Jupemon.github.io/image-checker",
   "dependencies": {
     "clarifai": "^2.9.0",
+    "gh-pages": "^2.2.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-particles-js": "^2.4.2",
@@ -22,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "image-checker -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
