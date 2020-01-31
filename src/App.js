@@ -33,7 +33,7 @@ class App extends Component {
     super();
     this.state = {
       isLoadingImage: false,
-      input: '',
+      input: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Arnold_Schwarzenegger_-_2019_%2833730956438%29_%28cropped%29.jpg/250px-Arnold_Schwarzenegger_-_2019_%2833730956438%29_%28cropped%29.jpg', // contains the current input
       imageUrl :'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Arnold_Schwarzenegger_-_2019_%2833730956438%29_%28cropped%29.jpg/250px-Arnold_Schwarzenegger_-_2019_%2833730956438%29_%28cropped%29.jpg',
       box: {},
       route: "signin",
@@ -90,7 +90,7 @@ class App extends Component {
   onSubmit = (event) => {
     this.setState({imageUrl: this.state.input ,isLoadingImage: true})
     console.log(this.state.input);
-    /*
+    
     app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.input)
     .then(response => {
       if (response) {
@@ -106,7 +106,7 @@ class App extends Component {
       this.setState({isLoadingImage : false})
       this.displayFaceBox(this.calculateFaceLocation(response))
     })
-    .catch(err => err.json().then(error => console.log(error)));*/
+    .catch(err => err.json().then(error => console.log(error)));
   }
 
 
