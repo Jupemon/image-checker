@@ -1,5 +1,3 @@
-## image-checker
-
 ## View project here : https://jupemon.github.io/image-checker/
 
 ## Info
