@@ -8,15 +8,15 @@ self.__precacheManifest = [
     "url": "/image-checker/static/js/runtime~main.ed1c8c74.js"
   },
   {
-    "revision": "08461768c837634d1a1a",
-    "url": "/image-checker/static/js/main.08461768.chunk.js"
+    "revision": "ad2253cd80364a5aa8b2",
+    "url": "/image-checker/static/js/main.ad2253cd.chunk.js"
   },
   {
     "revision": "526f9b58d57151523a4e",
     "url": "/image-checker/static/js/2.526f9b58.chunk.js"
   },
   {
-    "revision": "08461768c837634d1a1a",
+    "revision": "ad2253cd80364a5aa8b2",
     "url": "/image-checker/static/css/main.aa98bfc2.chunk.css"
   },
   {
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/image-checker/static/css/2.f0b88e88.chunk.css"
   },
   {
-    "revision": "edb3995da55f0ca669adb917b6fba9c7",
+    "revision": "69c7fc9bcb2182f2cd9b848e71c53105",
     "url": "/image-checker/index.html"
   }
 ];
