@@ -51,7 +51,7 @@ class App extends Component {
   loadUser = (data) => {
     this.setState({user : {
       id: data.id,
-      name: data.name,
+      name: data.username,
       email: data.email,
       entries: data.entries,
       joined: data.joined
@@ -90,6 +90,7 @@ class App extends Component {
   onSubmit = (event) => {
     this.setState({imageUrl: this.state.input ,isLoadingImage: true})
     console.log(this.state.input);
+    /*
     app.models.predict("a403429f2ddf4b49b307e318f00e528b", this.state.input)
     .then(response => {
       if (response) {
@@ -105,12 +106,13 @@ class App extends Component {
       this.setState({isLoadingImage : false})
       this.displayFaceBox(this.calculateFaceLocation(response))
     })
-    .catch(err => err.json().then(error => console.log(error)));
+    .catch(err => err.json().then(error => console.log(error)));*/
   }
 
 
   onInputChange = (event) => {
     this.setState({input: event.target.value});
+    console.log(event.target.value, "YOUR LOOKING THIS")
   }
 
   render() {
