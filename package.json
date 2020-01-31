@@ -2,7 +2,7 @@
   "name": "image-checker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Jupemon.github.io/image-checker",
+  "homepage": "https://Jupemon.github.io/image-checker",
   "dependencies": {
     "clarifai": "^2.9.0",
     "gh-pages": "^2.2.0",
